@@ -8,9 +8,9 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.optimizers import Adam
 from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
 
-os.chdir('C:/Users/roshan.b.shetty/Desktop/Dataset')
+os.chdir(os.getcwd())
 df = pd.read_csv('imdb_labelled.txt', sep='\t', header=None)
-# print(df.shape)
+print(df.shape)
 df.columns = ['text', 'sentiment']
 print(df.head())
 
@@ -39,7 +39,6 @@ model = tf.keras.Sequential([
     tf.keras.layers.GlobalAveragePooling1D(),
     tf.keras.layers.Dense(1, activation='sigmoid', kernel_initializer=initializer2)
 ])
-
 model.summary()
 model.compile(optimizer=Adam(lr=0.001), loss='binary_crossentropy', metrics=['accuracy'])
 model.fit(X_train, y_train, batch_size=16, epochs=30, verbose=1)
