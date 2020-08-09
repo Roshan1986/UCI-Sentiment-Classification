@@ -41,7 +41,7 @@ model = tf.keras.Sequential([
 ])
 model.summary()
 model.compile(optimizer=Adam(lr=0.001), loss='binary_crossentropy', metrics=['accuracy'])
-model.fit(X_train, y_train, batch_size=16, epochs=30, verbose=1)
+model.fit(X_train, y_train, validation_data=(X_test, y_test), batch_size=16, epochs=15, verbose=1)
 
 y_pred = np.round(model.predict(X_test))
 print(confusion_matrix(y_test, y_pred))
